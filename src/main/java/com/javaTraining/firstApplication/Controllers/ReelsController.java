@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.javaTraining.firstApplication.DTO.ReelsPatchDTO;
 import com.javaTraining.firstApplication.Service.ReelsService;
 import com.javaTraining.firstApplication.models.Reels;
 
@@ -42,9 +43,9 @@ public class ReelsController {
 		return reelsService.deleteReels(id);
 	}
 	
-	@PatchMapping("/edit")
-	public String editReels() {
-		return "Reels Edited Successfully";
+	@PatchMapping("/edit/{xyz}")
+	public Reels editReels(@PathVariable int xyz ,@RequestBody ReelsPatchDTO ram) {
+		return reelsService.updateReel(xyz, ram);
 	}
 	
 	@DeleteMapping("/delete")

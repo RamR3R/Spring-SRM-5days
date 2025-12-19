@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaTraining.firstApplication.DTO.ReelsPatchDTO;
 import com.javaTraining.firstApplication.Repositories.ReelsRepository;
 import com.javaTraining.firstApplication.models.Reels;
 
@@ -24,6 +25,22 @@ public class ReelsService {
 	
 	public Reels createReel(Reels reelFromReq) {
 		return x.save(reelFromReq);
+	}
+	
+	public Reels updateReel(int id , ReelsPatchDTO newData)
+	{
+		Reels obj = x.getById(id);
+		
+		if(newData.getId() != null)
+			obj.setId(newData.getId());
+		
+		if(newData.getLikes() != null)
+			obj.setLikes(newData.getLikes());
+		
+		if(newData.getReelsData() != null)
+			obj.setReelsData(newData.getReelsData());
+		
+		return x.save(obj);
 	}
 	
 	public String deleteReels(int id) {
